@@ -17,8 +17,19 @@ const addPost = async post => {
         title: savedPost.title,
         description: savedPost.description
     }
-
-
 }
 
-export { addPost }
+const getPosts = async () => {
+    await dbConnect();
+
+    return Post.find();
+
+    // const posts = await Post.find({})
+    // return posts.map(post => ({
+    //     _id: post._id.toString(),
+    //     title: post.title,
+    //     descri  ption: post.description
+    // }));
+}
+
+export { addPost, getPosts }
