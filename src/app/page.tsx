@@ -1,6 +1,10 @@
-import {addPost} from "@/action/action";
+import {addPost, getPosts} from "@/action/action";
 
-export default function Home() {
+export default async function Home() {
+
+    const posts = await getPosts();
+    console.log(posts);
+
     return (
         <div className="max-w-screen-sm m-auto flex flex-col justify-center items-center min-h-screen">
             <form
@@ -40,6 +44,15 @@ export default function Home() {
                     Submit
                 </button>
             </form>
+
+            <div className="flex flex-col gap-4">
+                {posts.map(post => (
+                    <div key={post._id}>
+                        <h1>{post.title}</h1>
+                        <p>{post.description}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
